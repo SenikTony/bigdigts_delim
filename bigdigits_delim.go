@@ -38,6 +38,10 @@ func init() {
 }
 
 func main() {
+	flag.Parse()
+
+	fmt.Println(*strFlag)
+
 	if len(os.Args) == 1 || os.Args[1] == "-h" || os.Args[1] == "--help" ||
 		(len(os.Args) == 2 && (os.Args[1] == "-b" || os.Args[1] == "--bar")) {
 		fmt.Printf("usage: %s [-b | --bar] <whole-number>\n-b --bar draw an underbar and an overbar\n",
@@ -45,7 +49,7 @@ func main() {
 		os.Exit(1)
 	}
 
-	stringOfDigits := os.Args[1]
+	/*stringOfDigits := os.Args[1]
 
 	for row := range bigDigits[0] {
 		line := ""
@@ -58,5 +62,5 @@ func main() {
 			}
 		}
 		fmt.Println(line)
-	}
+	}*/
 }
