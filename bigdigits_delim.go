@@ -28,12 +28,9 @@ var bigDigits = [][]string{
 	{" 9999", "9   9", "9   9", " 9999", "    9", "    9", "    9"},
 }
 
-var hlpFlag bool
 var barFlag bool
 
 func init() {
-	flag.BoolVar(&hlpFlag, "help", value, usage)
-	flag.BoolVar(&hlpFlag, "h", value, usage)
 	flag.BoolVar(&barFlag, "bar", value, usage)
 	flag.BoolVar(&barFlag, "b", value, usage)
 }
@@ -41,21 +38,13 @@ func init() {
 func main() {
 	flag.Parse()
 
-	//fmt.Println("key:", hlpFlag, barFlag)
-
-	/*if len(os.Args) == 1 || os.Args[1] == "-h" || os.Args[1] == "--help" ||
-		(len(os.Args) == 2 && (os.Args[1] == "-b" || os.Args[1] == "--bar")) {
-		fmt.Printf("usage: %s [-b | --bar] <whole-number>\n-b --bar draw an underbar and an overbar\n",
-			filepath.Base(os.Args[0]))
-		os.Exit(1)
-	}*/
-	if hlpFlag {
-		fmt.Printf("usage: %s [-b | --bar] <whole-number>\n-b --bar draw an underbar and an overbar\n",
+	if len(os.Args) == 1 || (len(os.Args) == 2 && barFlag) {
+		fmt.Printf("usage: %s [-b = true | -bar = true] <whole-number>\n-b -bar draw an underbar and an overbar\n",
 			filepath.Base(os.Args[0]))
 		os.Exit(1)
 	}
 
-	/*stringOfDigits := os.Args[1]
+	stringOfDigits := os.Args[1]
 
 	for row := range bigDigits[0] {
 		line := ""
@@ -68,5 +57,5 @@ func main() {
 			}
 		}
 		fmt.Println(line)
-	}*/
+	}
 }
