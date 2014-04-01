@@ -11,9 +11,8 @@ import (
 )
 
 const (
-	valueHlp1 = "help"
-	valueBar1 = "bar"
-	usage     = "usage: %s [-b | --bar] <whole-number>\n-b --bar draw an underbar and an overbar\n"
+	value = false
+	usage = "usage: [-h = true | -help = true] to print HELP\n"
 )
 
 var bigDigits = [][]string{
@@ -29,20 +28,28 @@ var bigDigits = [][]string{
 	{" 9999", "9   9", "9   9", " 9999", "    9", "    9", "    9"},
 }
 
-var strFlag string
+var hlpFlag bool
+var barFlag bool
 
 func init() {
-	flag.StringVar(&strFlag, "key", valueHlp1, usage)
-	flag.StringVar(&strFlag, "key", valueBar1, usage)
+	flag.BoolVar(&hlpFlag, "help", value, usage)
+	flag.BoolVar(&hlpFlag, "h", value, usage)
+	flag.BoolVar(&barFlag, "bar", value, usage)
+	flag.BoolVar(&barFlag, "b", value, usage)
 }
 
 func main() {
 	flag.Parse()
 
-	fmt.Println(*strFlag)
+	//fmt.Println("key:", hlpFlag, barFlag)
 
-	if len(os.Args) == 1 || os.Args[1] == "-h" || os.Args[1] == "--help" ||
+	/*if len(os.Args) == 1 || os.Args[1] == "-h" || os.Args[1] == "--help" ||
 		(len(os.Args) == 2 && (os.Args[1] == "-b" || os.Args[1] == "--bar")) {
+		fmt.Printf("usage: %s [-b | --bar] <whole-number>\n-b --bar draw an underbar and an overbar\n",
+			filepath.Base(os.Args[0]))
+		os.Exit(1)
+	}*/
+	if hlpFlag {
 		fmt.Printf("usage: %s [-b | --bar] <whole-number>\n-b --bar draw an underbar and an overbar\n",
 			filepath.Base(os.Args[0]))
 		os.Exit(1)
