@@ -32,7 +32,7 @@ var barFlag bool
 
 func init() {
 	flag.BoolVar(&barFlag, "bar", value, usage)
-	flag.BoolVar(&barFlag, "b", value, usage)
+	flag.BoolVar(&barFlag, "b", value, usage) //short version key
 }
 
 func main() {
