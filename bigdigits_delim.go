@@ -23,6 +23,20 @@ var bigDigits = [][]string{
 	{" 9999", "9   9", "9   9", " 9999", "    9", "    9", "    9"},
 }
 
+var strFlag string
+
+func init() {
+	const (
+		defaultStr = ""
+		usage      = "usage: %s [-b | --bar] <whole-number>\n-b --bar draw an underbar and an overbar\n"
+	)
+
+	flag.StringVar(&strFlag, "help", defaultStr, usage)
+	flag.StringVar(&strFlag, "h", defaultStr, usage)
+	flag.StringVar(&strFlag, "bar", defaultStr, usage)
+	flag.StringVar(&strFlag, "b", defaultStr, usage)
+}
+
 func main() {
 	if len(os.Args) == 1 || os.Args[1] == "-h" || os.Args[1] == "--help" ||
 		(len(os.Args) == 2 && (os.Args[1] == "-b" || os.Args[1] == "--bar")) {
