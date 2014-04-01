@@ -12,6 +12,7 @@ import (
 
 const (
 	valueHlp1 = "help"
+	valueBar1 = "bar"
 	usage     = "usage: %s [-b | --bar] <whole-number>\n-b --bar draw an underbar and an overbar\n"
 )
 
@@ -32,12 +33,13 @@ var strFlag string
 
 func init() {
 	flag.StringVar(&strFlag, "key", valueHlp1, usage)
+	flag.StringVar(&strFlag, "key", valueBar1, usage)
 }
 
 func main() {
 	flag.Parse()
 
-	fmt.Println(strFlag)
+	fmt.Println(*strFlag)
 
 	if len(os.Args) == 1 || os.Args[1] == "-h" || os.Args[1] == "--help" ||
 		(len(os.Args) == 2 && (os.Args[1] == "-b" || os.Args[1] == "--bar")) {
