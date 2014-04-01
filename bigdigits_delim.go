@@ -11,8 +11,8 @@ import (
 )
 
 const (
-	value = ""
-	usage = "usage: %s [-b | --bar] <whole-number>\n-b --bar draw an underbar and an overbar\n"
+	valueHlp1 = "help"
+	usage     = "usage: %s [-b | --bar] <whole-number>\n-b --bar draw an underbar and an overbar\n"
 )
 
 var bigDigits = [][]string{
@@ -28,19 +28,16 @@ var bigDigits = [][]string{
 	{" 9999", "9   9", "9   9", " 9999", "    9", "    9", "    9"},
 }
 
-//http://stackoverflow.com/questions/19761963/flag-command-line-parsing-in-golang
-var hlpFlag = flag.String("help", value, usage)
-var barFlag = flag.String("bar", value, usage)
+var strFlag string
 
 func init() {
-	flag.StringVar(&hlpFlag, "h", value, usage)
-	flag.StringVar(&barFlag, "b", value, usage)
+	flag.StringVar(&strFlag, "key", valueHlp1, usage)
 }
 
 func main() {
 	flag.Parse()
 
-	fmt.Println(*hlpFlag, *barFlag)
+	fmt.Println(strFlag)
 
 	if len(os.Args) == 1 || os.Args[1] == "-h" || os.Args[1] == "--help" ||
 		(len(os.Args) == 2 && (os.Args[1] == "-b" || os.Args[1] == "--bar")) {
